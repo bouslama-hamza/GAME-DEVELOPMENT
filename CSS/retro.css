@@ -9,7 +9,7 @@ body {
 
 #window {
     position: absolute;
-    background-color: black;
+    background-color: rgb(234, 23, 23);
     height: 75%;
     width: 60%;
     margin-top: 7%;
