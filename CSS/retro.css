@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#window {
+    position: absolute;
+    background-color: black;
+    height: 75%;
+    width: 60%;
+    margin-top: 7%;
+    margin-left: 19%;
+}
+
+#leftborder {
+    position: absolute;
+    height: 76px;
+    width: 14px;
+    left: 20px;
+    top: 30px;
+    background-color: white;
+}
+
+#rightborder {
+    position: absolute;
+    height: 76px;
+    width: 14px;
+    right: 20px;
+    top: 30px;
+    background-color: white;
+}
