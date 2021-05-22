@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+body {
+    background-color: lightyellow;
+}
+
 #window {
     position: absolute;
     background-color: black;
@@ -17,7 +21,7 @@
     height: 76px;
     width: 14px;
     left: 20px;
-    top: 30px;
+    top: 0px;
     background-color: white;
 }
 
@@ -26,7 +30,72 @@
     height: 76px;
     width: 14px;
     right: 20px;
-    top: 30px;
+    top: 0px;
     background-color: white;
-    
+}
+
+.vertical {
+    border-left: 3px dashed white;
+    opacity: 0.5;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+}
+
+#ball {
+    position: absolute;
+    border-radius: 50%;
+    background-color: white;
+    height: 20px;
+    width: 20px;
+    left: 50%;
+    top: 50%;
+}
+
+#score1,
+#score-,
+#score2 {
+    display: inline-block;
+    font-size: 85px;
+    font-family: 'Snell Roundhand', cursive;
+    left: 36%;
+}
+
+#control {
+    margin-left: 45%;
+    position: absolute;
+    top: -2%;
+}
+
+#player1 {
+    font-size: 50px;
+    font-family: 'Snell Roundhand', cursive;
+    position: absolute;
+    left: 19%;
+    top: 20%;
+}
+
+#player2 {
+    font-size: 50px;
+    font-family: 'Snell Roundhand', cursive;
+    position: absolute;
+    right: 22%;
+    top: 20%;
+}
+
+#khat1 {
+    border-left: 3px solid red;
+    opacity: 0;
+    height: 100%;
+    position: absolute;
+    left: 2%;
+}
+
+#khat2 {
+    border-left: 3px solid red;
+    opacity: 0;
+    height: 100%;
+    position: absolute;
+    left: 98%;
+
 }
