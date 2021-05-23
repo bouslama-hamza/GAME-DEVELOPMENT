@@ -16,7 +16,8 @@ body {
     margin-left: 19%;
 }
 
-#leftborder ,#leftborder1{
+#leftborder,
+#leftborder1 {
     position: absolute;
     height: 15%;
     width: 2%;
@@ -25,7 +26,8 @@ body {
     background-color: white;
 }
 
-#rightborder,#rightborder1 {
+#rightborder,
+#rightborder1 {
     position: absolute;
     height: 15%;
     width: 2%;
@@ -33,12 +35,14 @@ body {
     top: 25%;
     background-color: white;
 }
-#rightborder1,#leftborder1{
+
+#rightborder1,
+#leftborder1 {
     opacity: 0;
     width: 4%;
-    background-color:red
-
+    background-color: red
 }
+
 .vertical {
     border-left: 3px dashed white;
     opacity: 0.5;
@@ -46,6 +50,7 @@ body {
     position: absolute;
     left: 50%;
 }
+
 #score1,
 #score-,
 #score2 {
@@ -91,5 +96,33 @@ body {
     height: 100%;
     position: absolute;
     left: 98%;
+}
 
+#names {
+    position: absolute;
+    background-color: black;
+    width: 100%;
+    height: 5%;
+    color: white;
+    font-size: 25px;
+    top: 95%;
+    font-family: 'Snell Roundhand';
+    text-align: center;
+}
+
+#player1description {
+    position: absolute;
+    font-size: 40px;
+    font-family: 'Snell Roundhand', cursive;
+    top: 20%;
+    margin-left: 27px;
+}
+
+#player2description {
+    text-align: left;
+    position: absolute;
+    font-size: 40px;
+    font-family: 'Snell Roundhand', cursive;
+    top: 20%;
+    margin-left: 1120px;
 }
