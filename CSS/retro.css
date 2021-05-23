@@ -16,24 +16,29 @@ body {
     margin-left: 19%;
 }
 
-#leftborder {
+#leftborder ,#leftborder1{
     position: absolute;
-    height: 76px;
-    width: 14px;
-    left: 20px;
-    top: 30px;
+    height: 15%;
+    width: 2%;
+    left: 2%;
+    top: 15%;
     background-color: white;
 }
 
-#rightborder {
+#rightborder,#rightborder1 {
     position: absolute;
-    height: 76px;
-    width: 14px;
-    right: 20px;
-    top: 400px;
+    height: 15%;
+    width: 2%;
+    right: 2%;
+    top: 25%;
     background-color: white;
 }
+#rightborder1,#leftborder1{
+    opacity: 0;
+    width: 4%;
+    background-color:red
 
+}
 .vertical {
     border-left: 3px dashed white;
     opacity: 0.5;
@@ -41,17 +46,6 @@ body {
     position: absolute;
     left: 50%;
 }
-
-#ball {
-    position: absolute;
-    border-radius: 50%;
-    background-color: white;
-    height: 20px;
-    width: 20px;
-    left: 50%;
-    top: 50%;
-}
-
 #score1,
 #score-,
 #score2 {
@@ -97,4 +91,5 @@ body {
     height: 100%;
     position: absolute;
     left: 98%;
+
 }
