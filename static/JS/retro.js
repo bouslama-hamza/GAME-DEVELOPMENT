@@ -45,7 +45,7 @@ function moving(){
     y+=1*degy
     if (collidesWith ( a, Line1 )){
         score1++
-        document.getElementById('score1').innerHTML=score1
+        document.getElementById('score2').innerHTML=score1
         x=398
         y=260
         degx=-degx
@@ -53,7 +53,7 @@ function moving(){
     }
     if(collidesWith ( a, Line2 )){
         score2++
-        document.getElementById('score2').innerHTML=score2
+        document.getElementById('score1').innerHTML=score2
         x=398
         y=260
         degx=-degx
