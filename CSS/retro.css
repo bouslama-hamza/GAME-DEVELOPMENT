@@ -16,18 +16,19 @@ body {
     margin-left: 19%;
 }
 
-#leftborder,
-#leftborder1 {
+#leftborder,#leftborder1{
+
     position: absolute;
     height: 15%;
     width: 2%;
     left: 2%;
     top: 15%;
     background-color: white;
+
 }
 
-#rightborder,
-#rightborder1 {
+#rightborder,#rightborder1{
+    
     position: absolute;
     height: 15%;
     width: 2%;
@@ -36,14 +37,15 @@ body {
     background-color: white;
 }
 
-#rightborder1,
-#leftborder1 {
+#rightborder1,#leftborder1{
+
     opacity: 0;
     width: 4%;
     background-color: red
 }
 
-.vertical {
+.vertical{
+
     border-left: 3px dashed white;
     opacity: 0.5;
     height: 100%;
@@ -51,22 +53,23 @@ body {
     left: 50%;
 }
 
-#score1,
-#score-,
-#score2 {
+#score1,#score-,#score2{
+
     display: inline-block;
     font-size: 85px;
     font-family: 'Snell Roundhand', cursive;
     left: 36%;
 }
 
-#control {
+#control{
+
     margin-left: 45%;
     position: absolute;
     top: -2%;
 }
 
-#player1 {
+#player1{
+
     font-size: 50px;
     font-family: 'Snell Roundhand', cursive;
     position: absolute;
@@ -82,15 +85,15 @@ body {
     top: 20%;
 }
 
-#khat1 {
+#Line1 {
     border-left: 3px solid red;
-    opacity: 0;
+    opacity: 0.5;
     height: 100%;
     position: absolute;
     left: 2%;
 }
 
-#khat2 {
+#Line2 {
     border-left: 3px solid red;
     opacity: 0;
     height: 100%;
@@ -98,7 +101,8 @@ body {
     left: 98%;
 }
 
-#names {
+#names{
+
     position: absolute;
     background-color: black;
     width: 100%;
@@ -110,7 +114,8 @@ body {
     text-align: center;
 }
 
-#player1description {
+#player1description{
+
     position: absolute;
     font-size: 40px;
     font-family: 'Snell Roundhand', cursive;
@@ -118,11 +123,21 @@ body {
     margin-left: 27px;
 }
 
-#player2description {
+#player2description{
+
     text-align: left;
     position: absolute;
     font-size: 40px;
     font-family: 'Snell Roundhand', cursive;
     top: 20%;
     margin-left: 1120px;
+}
+            
+#Button{
+
+    position: absolute;
+    font-size: 50px;
+    top: 40%;
+    left: 44%;
+   
 }
