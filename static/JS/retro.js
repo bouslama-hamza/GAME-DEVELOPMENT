@@ -59,7 +59,6 @@ function moving(){
         degx=-degx
     }
     setTimeout('moving()',1)
-
 }
                         //Button to start the game//
 document.addEventListener('click',function(R){
