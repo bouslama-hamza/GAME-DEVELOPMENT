@@ -121,10 +121,3 @@ document.addEventListener('keydown', (event) => {
     }
  });
  
-
-
-
-
-/*document.addEventListener('mousemove' , (e)=> {
-    console.log(e.clientX,e.clientY)
-})*/
