@@ -85,38 +85,38 @@ document.addEventListener('keydown', (event) => {
  
     if ( event.key == 's') {
         if(last_b_pss == 430){Number(last_b_pss) = 430}
-        last_b_pss = Number(last_b_pss) + 10
+        last_b_pss = Number(last_b_pss) + 30
         left_br.style.top = `${last_b_pss}px` 
 
         if(last_b_pss_1 == 430){Number(last_b_pss_1) = 430}
-        last_b_pss_1 = Number(last_b_pss_1) + 10
+        last_b_pss_1 = Number(last_b_pss_1) + 30
         left_br_1.style.top = `${last_b_pss_1}px`        
     }
     else if( event.key == 'w'){
         if(last_b_pss == 0){Number(last_b_pss) = 0}
-        last_b_pss = Number(last_b_pss) - 10
+        last_b_pss = Number(last_b_pss) - 30
         left_br.style.top = `${last_b_pss}px` 
 
         if(last_b_pss_1 == 0){Number(last_b_pss_1) = 0}
-        last_b_pss_1 = Number(last_b_pss_1) - 10
+        last_b_pss_1 = Number(last_b_pss_1) - 30
         left_br_1.style.top = `${last_b_pss_1}px` 
     }
     else if( event.key == 'l'){
         if(last_r_pss == 430){Number(last_r_pss) = 430}
-        last_r_pss = Number(last_r_pss) + 10
+        last_r_pss = Number(last_r_pss) + 30
         right_br.style.top = `${last_r_pss}px`
 
         if(last_r_pss_1 == 430){Number(last_r_pss_1) = 430}
-        last_r_pss_1 = Number(last_r_pss_1) + 10
+        last_r_pss_1 = Number(last_r_pss_1) + 30
         right_br_1.style.top = `${last_r_pss_1}px`
     }
     else if( event.key == 'o'){
         if(last_r_pss_1 == 0){Number(last_r_pss_1) = 0}
-        last_r_pss_1 = Number(last_r_pss_1) - 10
+        last_r_pss_1 = Number(last_r_pss_1) - 30
         right_br_1.style.top = `${last_r_pss_1}px`
 
         if(last_r_pss == 0){Number(last_r_pss) = 0}
-        last_r_pss = Number(last_r_pss) - 10
+        last_r_pss = Number(last_r_pss) - 30
         right_br.style.top = `${last_r_pss}px`
     }
  });
