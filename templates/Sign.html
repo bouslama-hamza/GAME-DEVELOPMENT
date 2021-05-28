@@ -1,17 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div style="background-image: url('/home/hamza/Desktop/Ping Pong/PingPong/static/IMAGES/back.jpg');">
-    <div id='plays'>
-        <form action="/players" method="POST" id ='homey'>
-            <br>
-            <label for="name">Full Name</label><br>
-            <input type="text" name='name' placeholder='Your Full Name...', required><br>
-            <label for="email">Email</label><br>
-            <input type="text name" name="email" placeholder='Your Email' required><br>
-            <button type="submit" >submit</button>
-        </form>
-    </div>
+<div id='plays'>
+    <form action="/players" method="POST" id ='homey'>
+        <br>
+        <label for="name">Full Name</label><br>
+        <input type="text" name='name' placeholder='Full Name', required , style="font-size: 30px;"><br>
+        <label for="email">Email</label><br>
+        <input type="text name" name="email" placeholder='Email' required , style="font-size: 30px;"><br>
+        <button type="submit" , style="font-size: 30px;" >submit</button>
+    </form>
 </div>
 
 {% endblock content %}
