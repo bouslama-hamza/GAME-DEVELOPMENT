@@ -1,10 +1,13 @@
 * {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
+   
 }
 
 body {
-    background-color: lightyellow;
+
+   background-color: aliceblue;
+  
 }
 
 #window {
@@ -163,16 +166,20 @@ body {
     border-radius:5px
 }
 #homey{
-    border:1px solid black;
+    
+    border:3px solid black;
     border-radius: 10px;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     display:inline-block;
-    padding:0 2vw;
+    
 }
 form{
+
     display: inline-block;
 }
 #plays{
+
     text-align: center;
+
 }

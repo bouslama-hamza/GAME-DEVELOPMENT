@@ -10,7 +10,6 @@ let Line1 = document.getElementById("Line1")
 let Line2 = document.getElementById("Line2")
 let score1=0
 let score2=0
-console.log(a.style)
 function collidesWith (element1, element2) {
     var Element1 = {};
     var Element2 = {};
@@ -65,6 +64,10 @@ document.addEventListener('click',function(R){
     if(R.target.id == 'Button'){
         moving()
         document.getElementById('Button').style.display = 'none'
+        document.getElementById('score1').innerHTML=user.score1
+        document.getElementById('score2').innerHTML=user.score2
+        score1=user.score2
+        score2=user.score1
     }
   }
 );
@@ -121,10 +124,17 @@ document.addEventListener('keydown', (event) => {
     }
  });
  
-
-
-
-
-/*document.addEventListener('mousemove' , (e)=> {
-    console.log(e.clientX,e.clientY)
-})*/
+function out(){
+    let user_score = {
+        'player1' : score1,
+        'player2' : score2
+    } 
+    const request = new XMLHttpRequest()
+    request.open('POST',`/${JSON.stringify(user_score)}`)
+    request.onload = () => {
+        const data = request.responseText
+        console.log(data)
+    }
+    request.send()
+}
+document.getElementById("homeys").addEventListener('click',out())
