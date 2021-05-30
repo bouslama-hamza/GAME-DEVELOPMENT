@@ -137,4 +137,3 @@ function out(){
     }
     request.send()
 }
-document.getElementById("homeys").addEventListener('click',out())

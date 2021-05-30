@@ -41,8 +41,8 @@ def players():
 
 @app.route('/game', methods=['GET','POST'])
 def game():
-        user = {'score1': 0, 'score2': 0}
         session['user']+=[request.form['player1'],request.form['player2']]
+        user = {'score1': 0, 'score2': 0}
         return render_template('retro.html',user=user)
 if (__name__=="__main__"):
-    app.run(debug=True,port=8456)
+    app.run(debug=True,port=8457)
