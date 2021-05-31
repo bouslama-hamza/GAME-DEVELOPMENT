@@ -4,13 +4,10 @@
 }
 
 body {
-
-   background-color: aliceblue;
-  
+    background-color: aliceblue;
 }
 
 #window {
-
     position: absolute;
     height: 55%;
     width: 60%;
@@ -18,19 +15,18 @@ body {
     margin-left: 16%;
 }
 
-#leftborder,#leftborder1{
-
+#leftborder,
+#leftborder1 {
     position: absolute;
     height: 15%;
     width: 2%;
     left: 2%;
     top: 45%;
     background-color: white;
-
 }
 
-#rightborder,#rightborder1{
-    
+#rightborder,
+#rightborder1 {
     position: absolute;
     height: 15%;
     width: 2%;
@@ -39,19 +35,19 @@ body {
     background-color: white;
 }
 
-#rightborder1{
-
+#rightborder1 {
     opacity: 0;
     width: 4%;
     background-color: black
 }
-#leftborder1{
+
+#leftborder1 {
     opacity: 0.5;
     width: 1%;
     background-color: black
 }
-.vertical{
 
+.vertical {
     border-left: 3px dashed white;
     opacity: 0.5;
     height: 100%;
@@ -59,23 +55,22 @@ body {
     left: 50%;
 }
 
-#score1,#score-,#score2{
-
+#score1,
+#score-,
+#score2 {
     display: inline-block;
     font-size: 85px;
     font-family: 'Snell Roundhand', cursive;
     left: 36%;
 }
 
-#control{
-
+#control {
     margin-left: 39%;
     position: absolute;
     top: -2%;
 }
 
-#player1{
-
+#player1 {
     font-size: 50px;
     font-family: 'Snell Roundhand', cursive;
     position: absolute;
@@ -92,8 +87,8 @@ body {
 }
 
 #Line1 {
-    width:15px;
-    background-color:black;
+    width: 15px;
+    background-color: black;
     opacity: 0;
     height: 100%;
     position: absolute;
@@ -102,15 +97,14 @@ body {
 
 #Line2 {
     width: 15px;
-    background-color:black;
+    background-color: black;
     opacity: 0;
     height: 100%;
     position: absolute;
     left: 100%;
 }
 
-#names{
-
+#names {
     margin: 0;
     position: absolute;
     background-color: black;
@@ -124,8 +118,9 @@ body {
     text-align: center;
 }
 
-#Button{
+#Button {
     position: fixed;
+    top: -20px;
     margin: 17vw 27vw;
     display: inline-block;
     padding: 15px 25px;
@@ -134,43 +129,40 @@ body {
     text-align: center;
     text-decoration: none;
     outline: none;
-    color: #fff;
-    background-color: #4CAF50;
+    background-color: -webkit-linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
+    background: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
     border: none;
     border-radius: 15px;
-    box-shadow: 0 9px #999;
-}  
-#play1{
-    width:85%;
-    height:25vw;
-    background-color:whitesmoke;
-    border: 1px solid black;
-    margin:auto;
-    border-radius:5px
 }
-#homey{
 
-    border:3px solid black;
+#play1 {
+    width: 85%;
+    height: 25vw;
+    background-color: whitesmoke;
+    border: 1px solid black;
+    margin: auto;
+    border-radius: 5px
+}
+
+#homey {
+    border: 3px solid black;
     border-radius: 10px;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    display:inline-block;
-    
-}
-form{
-
     display: inline-block;
 }
-#plays{
-    
+
+form {
+    display: inline-block;
+}
+
+#plays {
     margin-top: 10%;
     text-align: center;
     font-size: 30px;
-
 }
 
-#about{
-
+#about {
     color: white;
     border: 2px solid black;
     border-width: 12px;
@@ -178,8 +170,8 @@ form{
     background-color: black;
     font-size: 40px;
 }
-#value{
 
+#value {
     margin: 7%;
     border: 2px solid aliceblue;
     border-width: 30px;
@@ -187,9 +179,10 @@ form{
     width: 80%;
     font-size: 20px;
 }
-.homeys{
+
+.homeys {
     position: fixed;
-    width:10vw;
+    width: 10vw;
     border: none;
     color: black;
     padding: 16px 32px;
@@ -200,22 +193,51 @@ form{
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
-    top:85%;
-    left:55%;
+    top: 85%;
+    left: 55%;
     transition-duration: 0.4s;
 }
-#homeys1{
-    left:25%;
-    border: 5px solid Green;
+
+#homeys1 {
+    left: 25%;
+    border: 5px solid #2193b0;
+    background: #2193b0;
+    background: -webkit-linear-gradient(to right, #2193b0, #6dd5ed);
+    background: linear-gradient(to right, #2193b0, #6dd5ed);
+    border-radius: 20px;
 }
-#homeys2{
-    border: 5px solid black;
+
+#homeys2 {
+    border: 5px solid #f64f59;
+    background: #f64f59;
+    background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+    border-radius: 20px;
 }
+
 #homeys1:hover {
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50;
+    /* Green */
     color: white;
 }
-#homeys2:hover{
-background-color: #555555;
-color: white;  
+
+#homeys2:hover {
+    background-color: #555555;
+    color: white;
+}
+
+#player1description {
+    color: red;
+    font-family: serif;
+    position: relative;
+    top: 80px;
+    left: 30px;
+}
+
+#player2description {
+    color: rgb(55, 0, 255);
+    font-family: serif;
+    position: relative;
+    top: 30px;
+    left: 90%;
 }
