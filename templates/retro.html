@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% block content %}
-
 <div id="control">
     <div id="score1">0</div>
     <div id="score-">-</div>
@@ -24,11 +23,11 @@
 </div>
 <div id="player1description">player1 : <br> how to play <br> ⬆️ : w <br> ⬇️ : s </div>
 <div id="player2description">player2 : <br> how to play <br> ⬆️ : o <br> ⬇️ : l </div>
-<button type="button" id='homeys' onclick="out()" >save score </button>
-<button type="button" id='homeys' onclick="location='/'" >logout </button>
+<button type="button" class='homeys' id='homeys1' onclick="out()" >save score </button>
+<button type="button" class='homeys' id='homeys2' onclick="location='/'" >logout </button>
 <script>
     var user = JSON.parse('{{ user | tojson | safe}}');
 </script>
 <footer id="names">abdlouahab bella | hamza bousslama | oussama qouti | yassine boujrada</footer>
-
+<script src="{{ url_for('static',filename='JS/Game.js') }}"></script>
 {% endblock content %}

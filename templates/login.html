@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div id='plays'>
+    <form action="/Game" method="POST" id ='homey'>
+        <br><label for="email">Email</label><br>
+        <input type="text name" name="email" placeholder='Email ...' required , style="font-size: 30px;"><br>
+        <label for="name">Password</label><br>
+        <input type="text" name='password' placeholder='password ...', required , style="font-size: 30px;"><br>    
+        <button type="submit" , style="font-size: 30px;" >submit</button>
+    </form>
+    <p>Don't have an account ? <a href="/singup" style='margin-left: 5px;font-size: 10px;'>Sing-up</a></p>
+</div>
+
+{% endblock content %}

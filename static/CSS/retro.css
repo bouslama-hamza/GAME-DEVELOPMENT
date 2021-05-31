@@ -1,7 +1,6 @@
 * {
     margin: 0px;
     padding: 0px;
-   
 }
 
 body {
@@ -72,7 +71,7 @@ body {
 
     margin-left: 39%;
     position: absolute;
-    top: -4%;
+    top: -2%;
 }
 
 #player1{
@@ -187,4 +186,36 @@ form{
     align-items: center;
     width: 80%;
     font-size: 20px;
+}
+.homeys{
+    position: fixed;
+    width:10vw;
+    border: none;
+    color: black;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    top:85%;
+    left:55%;
+    transition-duration: 0.4s;
+}
+#homeys1{
+    left:25%;
+    border: 5px solid Green;
+}
+#homeys2{
+    border: 5px solid black;
+}
+#homeys1:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+#homeys2:hover{
+background-color: #555555;
+color: white;  
 }
