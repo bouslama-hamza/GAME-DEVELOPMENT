@@ -1,3 +1,8 @@
+document.getElementById('score1').innerHTML=user.score1
+document.getElementById('score2').innerHTML=user.score2
+document.getElementById('playernamedata1').innerHTML=user.player1
+document.getElementById('playernamedata2').innerHTML=user.player2
+let pause=false
 let degx=1 
 let degy=1
 let x=398
@@ -10,6 +15,9 @@ let Line1 = document.getElementById("Line1")
 let Line2 = document.getElementById("Line2")
 let score1=0
 let score2=0
+let move
+score1=user.score2
+score2=user.score1
 function collidesWith (element1, element2) {
     var Element1 = {};
     var Element2 = {};
@@ -57,7 +65,10 @@ function moving(){
         y=260
         degx=-degx
     }
-    setTimeout('moving()',1)
+    move = setTimeout('moving()',1)
+    if (pause==true){
+        return 0;
+    }
 }
                         //Button to start the game//
 document.addEventListener('click',function(R){
@@ -68,10 +79,6 @@ document.addEventListener('click',function(R){
     }
 }
 );
-document.getElementById('score1').innerHTML=user.score1
-document.getElementById('score2').innerHTML=user.score2
-score1=user.score2
-score2=user.score1
 let left_br = document.getElementById("leftborder")
 let right_br = document.getElementById("rightborder")
 let last_b_pss = left_br.style.top
@@ -137,4 +144,6 @@ function out(){
         console.log(data)
     }
     request.send()
+    clearTimeout(move)
+    document.getElementById('Button').style.display = 'block'
 }

@@ -11,7 +11,6 @@ login_manager=LoginManager(app)
 @login_manager.user_loader
 def load_user(user_id):
     return Student.query.get(int(user_id))
-
 class Student(db.Model,UserMixin): 
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(100), nullable= False)
@@ -32,21 +31,20 @@ def singup():
     return render_template("singup.html")
 @app.route('/<user_score>',methods=['POST'])
 def indexout(user_score):
-    print('erorr1')
     user_scores = json.loads(user_score)
-    print('erroe2')
     print(session['user'])
-    if len(session['user'])<2:
+    data =Student.query.filter_by(email=session['user'][0]).first()
+    if session['user'][0]==data.email:
         print(session['user'][0].player1_score,'-',session['user'][0].player2_score)
-        session['user'][0].player1_score=user_scores['player1']
-        session['user'][0].player2_score=user_scores['player2']
+        data.player1_score=user_scores['player1']
+        data.player2_score=user_scores['player2']
     else:
-        print('user1 error')
         user1=Student(name=session['user'][0],email=session['user'][1],password=session['user'][2],\
                 player1=session['user'][3],player2=session['user'][4],\
                 player1_score=user_scores['player1'],player2_score=user_scores['player2'])
         db.session.add(user1)
     db.session.commit()
+    session.clear()
     print(Student.query.all())
     return 'done'
 
@@ -63,16 +61,15 @@ def game():
     if request.method=='POST' :
         if request.form.get('player1') and request.form.get('player2'):
             session['user']+=[request.form.get('player1'),request.form.get('player2')] 
-            user = {'score1': 0, 'score2': 0}
+            user = {'score1': 0, 'score2': 0,'player1':session['user'][3],'player2':session['user'][4]}
         elif request.form.get('email') and request.form.get('password'):
             x=0
+            session['user']+=[request.form.get('email'),request.form.get('password')] 
             data =Student.query.filter_by(email=request.form.get('email')).first() #returns a Query object.
             if data and data.password==request.form.get('password'):
                     #session['user']=data   :( :( :(
                     login_user(data)
-                    #print(data)
-                    print('found',data.player1_score,'-',data.player2_score)
-                    user = {'score1': data.player1_score, 'score2': data.player2_score}
+                    user = {'score1': data.player1_score, 'score2': data.player2_score,'player1':data.player1,'player2':data.player2}
             else :
                 print('incorrect user info')
                 return redirect(url_for('index'))
