@@ -2,14 +2,22 @@
 {% block content %}
 
 <div id='plays'>
-    <form action="/Game" method="POST" id ='homey'>
+    <form action="/" method="POST" id ='homey'>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                    <p>{{ msg }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         <br><label for="email">Email</label><br>
         <input type="text name" name="email" placeholder='Email ...' required , style="font-size: 30px;"><br>
         <label for="name">Password</label><br>
-        <input type="text" name='password' placeholder='password ...', required , style="font-size: 30px;"><br>    
+        <input type="password" id='password' name='password' placeholder='password ...', required , style="font-size: 30px;"><br>
+        <input type="checkbox" onclick="show_password()" ><span style='font-size:15px;'  > Show Password</span><br>
         <button type="submit" , style="font-size: 30px;" >submit</button>
     </form>
-    <p>Don't have an account ? <a href="/singup" style='margin-left: 5px;font-size: 10px;'>Sing-up</a></p>
+    <p>Don't have an account ? <a href="/singup" style='margin-left: 5px;font-size: 20px;text-decoration: none;'>Sing-up</a></p>
 </div>
 
 {% endblock content %}

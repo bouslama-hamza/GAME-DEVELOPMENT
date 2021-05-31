@@ -75,7 +75,6 @@ document.addEventListener('click',function(R){
     if(R.target.id == 'Button'){
         moving()
         document.getElementById('Button').style.display = 'none'
-
     }
 }
 );

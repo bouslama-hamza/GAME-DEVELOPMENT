@@ -24,7 +24,14 @@
 <div id="player1description"><span id='playernamedata1'> player1</span> <br> how to play <br> ⬆️ : w <br> ⬇️ : s </div>
 <div id="player2description"><span id='playernamedata2'> player1</span><br> how to play <br> ⬆️ : o <br> ⬇️ : l </div>
 <button type="button" class='homeys' id='homeys1' onclick="out()" >save score </button>
-<button type="button" class='homeys' id='homeys2' onclick="location='/'" >logout </button>
+<button type="button" class='homeys' id='homeys2' onclick="location='/logout'" >logout </button>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+            <p>{{ msg }}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
 <script>
     var user = JSON.parse('{{ user | tojson | safe}}');
 </script>
