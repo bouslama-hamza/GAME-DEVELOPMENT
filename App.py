@@ -40,12 +40,17 @@ def index():
     return render_template("login.html")
 @app.route('/logout')
 def logout():
-    session.pop('name', None)
-    session.pop('email', None)
-    session.pop('password', None)
-    session.pop('player1', None)
-    session.pop('player2', None)
-    session.pop('data', None)
+    if 'data' in session:
+        session.pop('data', None)
+        session.pop('email', None)
+        session.pop('password', None)
+    else:
+        session.pop('name', None)
+        session.pop('email', None)
+        session.pop('password', None)
+        session.pop('confirm_password', None)
+        session.pop('player1', None)
+        session.pop('player2', None)
     print(session)
     return redirect(url_for('index'))
 @app.route('/singup', methods=['GET','POST'])
@@ -54,6 +59,13 @@ def singup():
         session['name']=request.form.get('name')
         session['email']=request.form.get('email')
         session['password']=request.form.get('password')
+        session['confirm_password']=request.form.get('confirm_password')
+        if session['password']!=session['confirm_password']:
+            session.pop('name', None)
+            session.pop('email', None)
+            session.pop('password', None)
+            session.pop('confirm_password', None)
+            return render_template('singup.html',error_='confirm password is not equal to password')
         print([request.form.get('name'),request.form.get('email'),request.form.get('password')])
         return redirect(url_for('players'))
     else:
