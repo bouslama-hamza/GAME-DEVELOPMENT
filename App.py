@@ -3,7 +3,7 @@ from flask.helpers import url_for
 from flask_sqlalchemy import SQLAlchemy
 import json
 from flask_login import LoginManager,UserMixin,login_user
-from mailer import Mailer
+from Email import send_email
 app= Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///testDB'
@@ -40,7 +40,14 @@ def index():
                 flash('incorrect user info')
                 return redirect(url_for('index'))
         elif request.form.get('new_password'):
-            session['new_password']=request.form.get('new_password')       
+            session['new_password']=request.form.get('new_password')
+            data =Student.query.filter_by(email=session['email_']).first()
+            if data.email:
+                data.password=session['new_password']
+                session.pop('new_password', None)
+                session.pop('email_',None)
+            db.session.commit()
+            print(Student.query.all())
     return render_template("login.html")
 @app.route('/email')
 def email():
@@ -49,16 +56,17 @@ def email():
 def reset():
     if request.method == 'POST' :
         session['email_']=request.form.get('email_')
-        session['validation_message']=123987
-        mail = Mailer(email='legend.eleve@gmail.com', password='legend2002')
-        mail.send(receiver=session['email_'], subject='Password reset', message=session['validation_message'])
+        session['validation_message']='4625789'
+        send_email(session['email_'],session['validation_message'])
         return render_template('reset.html')
     return redirect(url_for('index'))
 @app.route('/virefy', methods=['GET','POST'])
 def virefy():
     if request.method == 'POST' :
             session['valid']=request.form.get('passvalid')
-            if session['validation_message']==session['valid']:
+            print(type(session['validation_message']),'==',type(session['valid']))
+            if session['validation_message']==request.form.get('passvalid'):
+                print("what the heck")
                 session.pop('validation_message', None)
                 session.pop('valid', None)
                 return render_template('reset_new.html')
