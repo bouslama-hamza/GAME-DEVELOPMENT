@@ -3,6 +3,7 @@ from flask.helpers import url_for
 from flask_sqlalchemy import SQLAlchemy
 import json
 from flask_login import LoginManager,UserMixin,login_user
+from mailer import Mailer
 app= Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///testDB'
@@ -25,6 +26,7 @@ class Student(db.Model,UserMixin):
 @app.route('/', methods=['GET','POST'])
 def index():
     if request.method=='POST' :
+        if request.form.get('email') and request.form.get('password'):
             session['email']=request.form.get('email')
             session['password']=request.form.get('password')
             data =Student.query.filter_by(email=request.form.get('email')).first() #returns a Query object.
@@ -37,7 +39,34 @@ def index():
             else :
                 flash('incorrect user info')
                 return redirect(url_for('index'))
+        elif request.form.get('new_password'):
+            session['new_password']=request.form.get('new_password')       
     return render_template("login.html")
+@app.route('/email')
+def email():
+    return render_template('email.html')
+@app.route('/reset', methods=['GET','POST'])
+def reset():
+    if request.method == 'POST' :
+        session['email_']=request.form.get('email_')
+        session['validation_message']=123987
+        mail = Mailer(email='legend.eleve@gmail.com', password='legend2002')
+        mail.send(receiver=session['email_'], subject='Password reset', message=session['validation_message'])
+        return render_template('reset.html')
+    return redirect(url_for('index'))
+@app.route('/virefy', methods=['GET','POST'])
+def virefy():
+    if request.method == 'POST' :
+            session['valid']=request.form.get('passvalid')
+            if session['validation_message']==session['valid']:
+                session.pop('validation_message', None)
+                session.pop('valid', None)
+                return render_template('reset_new.html')
+            else:
+                session.pop('validation_message', None)
+                session.pop('valid', None)
+                return render_template('reset.html')
+    return redirect(url_for('index'))
 @app.route('/logout')
 def logout():
     if 'data' in session:

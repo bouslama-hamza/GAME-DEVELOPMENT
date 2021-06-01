@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div id='plays'>
+    <form action="/reset" method="POST" id ='homey'>
+        <br><label for="email_">Email</label><br>
+        <input type="text" name="email_" placeholder='email...' required , style="font-size: 30px;"><br>
+        <button type="submit" , style="font-size: 30px;" >submit</button>
+    </form>
+</div>
+{% endblock content %}

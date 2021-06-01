@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div id='plays'>
+    <form action="/virefy" method="POST" id ='homey'>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                    <p class='error'>{{ msg }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <p>check your Email !!</p><br>
+        <br><label for="passvalid">Enter the 6 digits </label><br>
+        <input type="text" name="passvalid" placeholder='six digits...' required , style="font-size: 30px;"><br>
+        <button type="submit" , style="font-size: 30px;" >submit</button>
+    </form>
+</div>
+
+{% endblock content %}

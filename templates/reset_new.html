@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div id='plays'>
+    <form action="/login" method="POST" id ='homey'>
+        <br><label for="new_password">New password</label><br>
+        <input type="text" name="new_password" placeholder='new password...' required , style="font-size: 30px;"><br>
+        <button type="submit" , style="font-size: 30px;" >submit</button>
+    </form>
+</div>
+{% endblock content %}
