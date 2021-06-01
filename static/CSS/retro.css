@@ -3,34 +3,26 @@
     padding: 0px;
 }
 
-body {
-
-   background-color: aliceblue;
-  
-}
-
 #window {
-
     position: absolute;
     height: 55%;
     width: 60%;
-    margin-top: 5%;
+    margin-top: 9%;
     margin-left: 16%;
 }
 
-#leftborder,#leftborder1{
-
+#leftborder,
+#leftborder1 {
     position: absolute;
     height: 15%;
     width: 2%;
     left: 2%;
     top: 45%;
     background-color: white;
-
 }
 
-#rightborder,#rightborder1{
-    
+#rightborder,
+#rightborder1 {
     position: absolute;
     height: 15%;
     width: 2%;
@@ -39,19 +31,19 @@ body {
     background-color: white;
 }
 
-#rightborder1{
-
+#rightborder1 {
     opacity: 0;
     width: 4%;
     background-color: black
 }
-#leftborder1{
+
+#leftborder1 {
     opacity: 0.5;
     width: 1%;
     background-color: black
 }
-.vertical{
 
+.vertical {
     border-left: 3px dashed white;
     opacity: 0.5;
     height: 100%;
@@ -59,23 +51,22 @@ body {
     left: 50%;
 }
 
-#score1,#score-,#score2{
-
+#score1,
+#score-,
+#score2 {
     display: inline-block;
     font-size: 85px;
     font-family: 'Snell Roundhand', cursive;
     left: 36%;
 }
 
-#control{
-
-    margin-left: 39%;
+#control {
+    margin-left: 41%;
     position: absolute;
-    top: -2%;
+    top: 0%;
 }
 
-#player1{
-
+#player1 {
     font-size: 50px;
     font-family: 'Snell Roundhand', cursive;
     position: absolute;
@@ -92,8 +83,8 @@ body {
 }
 
 #Line1 {
-    width:15px;
-    background-color:black;
+    width: 15px;
+    background-color: black;
     opacity: 0;
     height: 100%;
     position: absolute;
@@ -102,75 +93,74 @@ body {
 
 #Line2 {
     width: 15px;
-    background-color:black;
+    background-color: black;
     opacity: 0;
     height: 100%;
     position: absolute;
     left: 100%;
 }
 
-#names{
-
+#names {
     margin: 0;
     position: absolute;
-    background-color: black;
+    background: #23074d;
+    background: -webkit-linear-gradient(to right, #cc5333, #23074d);
+    background: linear-gradient(to right, #cc5333, #23074d);
     width: 100%;
     height: 5%;
     color: white;
     font-size: 25px;
     top: 95%;
     left: 0%;
-    font-family: 'Snell Roundhand';
+    font-family: serif;
     text-align: center;
 }
 
-#Button{
-    position: fixed;
+#Button {
+    position: absolute;
+    top: -75px;
+    left: 5px;
     margin: 17vw 27vw;
-    display: inline-block;
     padding: 15px 25px;
     font-size: 24px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
     outline: none;
-    color: #fff;
-    background-color: #4CAF50;
+    background-color: -webkit-linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
+    background: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
     border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;
-}  
-#play1{
-    width:85%;
-    height:25vw;
-    background-color:whitesmoke;
-    border: 1px solid black;
-    margin:auto;
-    border-radius:5px
+    border-radius: 25px;
 }
-#homey{
 
-    border:3px solid black;
+#play1 {
+    width: 85%;
+    height: 25vw;
+    background-color: whitesmoke;
+    border: 1px solid black;
+    margin: auto;
+    border-radius: 5px
+}
+
+#homey {
+    border: 3px solid black;
     border-radius: 10px;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    display:inline-block;
-    
-}
-form{
-
     display: inline-block;
 }
-#plays{
-    
+
+form {
+    display: inline-block;
+}
+
+#plays {
     margin-top: 10%;
     text-align: center;
     font-size: 30px;
-
 }
 
-#about{
-
+#about {
     color: white;
     border: 2px solid black;
     border-width: 12px;
@@ -178,8 +168,8 @@ form{
     background-color: black;
     font-size: 40px;
 }
-#value{
 
+#value {
     margin: 7%;
     border: 2px solid aliceblue;
     border-width: 30px;
@@ -187,9 +177,10 @@ form{
     width: 80%;
     font-size: 20px;
 }
-.homeys{
+
+.homeys {
     position: fixed;
-    width:10vw;
+    width: 10vw;
     border: none;
     color: black;
     padding: 16px 32px;
@@ -200,22 +191,67 @@ form{
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
-    top:85%;
-    left:55%;
+    top: 85%;
+    left: 55%;
     transition-duration: 0.4s;
 }
-#homeys1{
-    left:25%;
-    border: 5px solid Green;
+
+#homeys1 {
+    position: relative;
+    left: 25%;
+    bottom: -350px;
+    border: 5px solid #2193b0;
+    background: #2193b0;
+    background: -webkit-linear-gradient(to right, #2193b0, #6dd5ed);
+    background: linear-gradient(to right, #2193b0, #6dd5ed);
+    border-radius: 30px;
 }
-#homeys2{
-    border: 5px solid black;
+
+#homeys2 {
+    position: relative;
+    border: 5px solid #f64f59;
+    bottom: -350px;
+    left: 45%;
+    background: #f64f59;
+    background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+    border-radius: 30px;
 }
+
 #homeys1:hover {
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50;
     color: white;
 }
-#homeys2:hover{
-background-color: #555555;
-color: white;  
+
+#homeys2:hover {
+    background-color: #555555;
+    color: white;
+}
+
+#player1description {
+    color: red;
+    font-family: serif;
+    position: relative;
+    top: 130px;
+    left: 45px;
+}
+
+#player2description {
+    color: rgb(55, 0, 255);
+    font-family: serif;
+    position: relative;
+    top: 70px;
+    left: 85%;
+}
+.error{
+    font-size:15px;
+    border:0.5px solid rgb(213, 55, 55);
+    color:rgb(213, 55, 55);
+    border-radius: 1px;
+}
+.errorvalide{
+    font-size:15px;
+    border:0.5px solid rgb(63, 213, 55);
+    color:rgb(110, 210, 53);
+    border-radius: 1px;
 }
