@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
+<link rel="stylesheet" href="{{url_for('static' , filename='CSS/style.css')}}">
 
-<div id='plays'>
+<div class='window'>
     <form action="/" method="POST" id ='homey'>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
@@ -10,12 +11,10 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
-        <br><label for="email">Email</label><br>
-        <input type="text name" name="email" placeholder='Email ...' required , style="font-size: 30px;"><br>
-        <label for="name">Password</label><br>
-        <input type="password" id='password' name='password' placeholder='password ...', required , style="font-size: 30px;"><br>
+        <input type="text" name="email" placeholder='Email' required><br>
+        <input type="password" id='password' name='password' placeholder='password ...' required><br>
         <input type="checkbox" onclick="show_password()" ><span style='font-size:15px;'  > Show Password</span><br>
-        <button type="submit" , style="font-size: 30px;" >submit</button>
+        <input type="submit" value="Submit">
     </form>
     <p>Don't have an account ? <a href="/singup" style='margin-left: 5px;font-size: 20px;text-decoration: none;'>Sing-up</a></p>
 </div>

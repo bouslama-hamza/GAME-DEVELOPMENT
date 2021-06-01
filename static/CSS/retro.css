@@ -160,15 +160,6 @@ form {
     font-size: 30px;
 }
 
-#about {
-    color: white;
-    border: 2px solid black;
-    border-width: 12px;
-    text-align: center;
-    background-color: black;
-    font-size: 40px;
-}
-
 #value {
     margin: 7%;
     border: 2px solid aliceblue;
