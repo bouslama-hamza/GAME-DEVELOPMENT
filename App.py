@@ -3,6 +3,8 @@ from flask.helpers import url_for
 from flask_sqlalchemy import SQLAlchemy
 import json
 from flask_login import LoginManager,UserMixin,login_user
+from Email import send_email
+from random import randint
 app= Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///testDB'
@@ -25,9 +27,10 @@ class Student(db.Model,UserMixin):
 @app.route('/', methods=['GET','POST'])
 def index():
     if request.method=='POST' :
+        if request.form.get('email') and request.form.get('password'):
             session['email']=request.form.get('email')
             session['password']=request.form.get('password')
-            data =Student.query.filter_by(email=request.form.get('email')).first() #returns a Query object.
+            data =Student.query.filter_by(email=request.form.get('email')).first()
             if data and data.password==session['password']:
                     #session['user']=data   :( :( :(
                 login_user(data)
@@ -37,28 +40,101 @@ def index():
             else :
                 flash('incorrect user info')
                 return redirect(url_for('index'))
+        elif request.form.get('new_password'):
+            session['new_password']=request.form.get('new_password')
+            data =Student.query.filter_by(email=session['email_']).first()
+            if data.email:
+                data.password=session['new_password']
+                session.pop('new_password', None)
+                session.pop('email_',None)
+            db.session.commit()
+            print(Student.query.all())
     return render_template("login.html")
+@app.route('/email')
+def email():
+    return render_template('email.html')
+@app.route('/reset', methods=['GET','POST'])
+def reset():
+    if request.method == 'POST' :
+        session['email_']=request.form.get('email_')
+        session['validation_message']=str(randint(100000,999999))
+        data =Student.query.filter_by(email=request.form.get('email_')).first()
+        print(data)
+        if data :
+            send_email(session['email_'],session['validation_message'])
+            return render_template('reset.html')
+        else :
+            session.pop('email_')
+            session.pop('validation_message')
+            return render_template('email.html',error=True)
+    return redirect(url_for('index'))
+@app.route('/virefy', methods=['GET','POST'])
+def virefy():
+    if request.method == 'POST' :
+            session['valid']=request.form.get('passvalid')
+            if session.get('validation_message')==request.form.get('passvalid'):
+                print("what the heck")
+                session.pop('validation_message', None)
+                session.pop('valid', None)
+                return render_template('reset_new.html')
+            else:
+                session.pop('validation_message', None)
+                session.pop('valid', None)
+                return render_template('reset_new.html')
+    return redirect(url_for('index'))
 @app.route('/logout')
 def logout():
-    session.pop('name', None)
-    session.pop('email', None)
-    session.pop('password', None)
-    session.pop('player1', None)
-    session.pop('player2', None)
-    session.pop('data', None)
+    if 'data' in session:
+        session.pop('data', None)
+        session.pop('email', None)
+        session.pop('password', None)
+    else:
+        session.pop('name', None)
+        session.pop('email', None)
+        session.pop('password', None)
+        session.pop('confirm_password', None)
+        session.pop('player1', None)
+        session.pop('player2', None)
     print(session)
     return redirect(url_for('index'))
 @app.route('/singup', methods=['GET','POST'])
-def singup():  
-    if request.method == 'POST':        
+def singup():
+    inv1=False
+    inv2=False
+    inv3=False
+    if request.method == 'POST' and  not session.get("confirm_password"):
         session['name']=request.form.get('name')
         session['email']=request.form.get('email')
         session['password']=request.form.get('password')
-        print([request.form.get('name'),request.form.get('email'),request.form.get('password')])
-        return redirect(url_for('players'))
+        session['confirm_password']=request.form.get('confirm_password')
+        print(session['name'])
+        if len(session['name'])<4 or checkuser(session['name']):
+            inv1=True
+        if '@' not in session['email'] or checkemail(session['email']) or len(session['email'])<4:
+            inv2=True
+        if session['password']!=session['confirm_password']:
+            inv3=True
+        if inv1 or inv2 or inv3 :
+            session.pop('name', None)
+            session.pop('email', None)
+            session.pop('password', None)
+            return render_template("singup.html",inv1=inv1,inv2=inv2,inv3=inv3)
+        else:
+            return redirect(url_for('players'))    
     else:
-        return render_template("singup.html")
-
+        if session.get('confirm_password'):
+            session.pop('confirm_password')
+        return render_template("singup.html",inv1=inv1,inv2=inv2,inv3=inv3)
+def checkuser(a):
+    data =Student.query.filter_by(name=a).first()
+    if data:
+        return True
+    return False
+def checkemail(a):
+    data =Student.query.filter_by(email=a).first()
+    if data:
+        return True
+    return False
 @app.route('/<user_score>',methods=['POST'])
 def indexout(user_score):
     user_scores = json.loads(user_score)
@@ -84,6 +160,8 @@ def indexout(user_score):
 
 @app.route('/players', methods=['GET','POST'])
 def players():
+    if session.get('confirm_password'):
+        session.pop('confirm_password')
     if 'name' in session and 'email' in session and 'password' in session:
         print("what the heck")
         print(session)
@@ -108,7 +186,7 @@ def game():
     else:
         return redirect(url_for('index'))
 if (__name__=="__main__"):
-    app.run(debug=True,port=8464)
+    app.run(debug=True,port=5000)
     
 
     

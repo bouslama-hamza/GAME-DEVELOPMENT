@@ -1,23 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-
-<div id='plays'>
+<link rel="stylesheet" href="{{url_for('static' , filename='CSS/style.css')}}">
+<main >
+<div class='window'>
     <form action="/" method="POST" id ='homey'>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for msg in messages %}
-                    <p>{{ msg }}</p>
+                    <p class='error'>{{ msg }}</p>
                 {% endfor %}
             {% endif %}
         {% endwith %}
-        <br><label for="email">Email</label><br>
-        <input type="text name" name="email" placeholder='Email ...' required , style="font-size: 30px;"><br>
-        <label for="name">Password</label><br>
-        <input type="password" id='password' name='password' placeholder='password ...', required , style="font-size: 30px;"><br>
+        <input type="text" id='email' name="email" placeholder='Email ...' required ><br>
+        <input type="password" style='font-family: unset;' id='password' name='password' placeholder='password ...', required ><br>
         <input type="checkbox" onclick="show_password()" ><span style='font-size:15px;'  > Show Password</span><br>
-        <button type="submit" , style="font-size: 30px;" >submit</button>
+        <input type="submit" id='submit' value="log In">
     </form>
-    <p>Don't have an account ? <a href="/singup" style='margin-left: 5px;font-size: 20px;text-decoration: none;'>Sing-up</a></p>
+    <p id='reset' >Foget password ? <a href="/email" style='margin-left: 5px;font-size: 14px;text-decoration: none;'>Reset</a></p>
+    <button onclick="location='/singup'" id='singup'>Sing-up</button>
 </div>
-
+</main>
 {% endblock content %}

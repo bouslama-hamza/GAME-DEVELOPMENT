@@ -3,10 +3,7 @@
     padding: 0px;
 }
 
-#all {
-    background-image: url(pan.jpg);
-    background-size: auto;
-}
+#all {}
 
 #window {
     position: absolute;
@@ -23,7 +20,7 @@
     width: 2%;
     left: 2%;
     top: 45%;
-    background-color: white;
+    background-color: red;
 }
 
 #rightborder,
@@ -33,19 +30,19 @@
     width: 2%;
     right: 2%;
     top: 45%;
-    background-color: white;
+    background-color: blue;
 }
 
 #rightborder1 {
     opacity: 0;
     width: 4%;
-    background-color: black
+    background-color: black;
 }
 
 #leftborder1 {
     opacity: 0.5;
     width: 1%;
-    background-color: black
+    background-color: black;
 }
 
 .vertical {
@@ -165,15 +162,6 @@ form {
     font-size: 30px;
 }
 
-#about {
-    color: white;
-    border: 2px solid black;
-    border-width: 12px;
-    text-align: center;
-    background-color: black;
-    font-size: 40px;
-}
-
 #value {
     margin: 7%;
     border: 2px solid aliceblue;
@@ -247,4 +235,28 @@ form {
     position: relative;
     top: 70px;
     left: 85%;
+}
+
+.error {
+    font-size: 15px;
+    border: 0.5px solid rgb(213, 55, 55);
+    color: rgb(213, 55, 55);
+    border-radius: 1px;
+}
+
+.errorvalide {
+    font-size: 15px;
+    border: 0.5px solid rgb(63, 213, 55);
+    color: rgb(110, 210, 53);
+    border-radius: 1px;
+}
+
+.dayera {
+    width: 50px;
+    height: 50px;
+    border: 3px solid black;
+    border-radius: 20px;
+    border-top: 650px;
+    border-left: 50%;
+    z-index: 2;
 }
