@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+<div id="all">
 <div id="control">
     <div id="score1">0</div>
     <div id="score-">-</div>
@@ -32,6 +33,7 @@
         {% endfor %}
     {% endif %}
 {% endwith %}
+</div>
 <script>
     var user = JSON.parse('{{ user | tojson | safe}}');
 </script>

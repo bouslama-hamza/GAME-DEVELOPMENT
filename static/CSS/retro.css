@@ -3,6 +3,11 @@
     padding: 0px;
 }
 
+#all {
+    background-image: url(pan.jpg);
+    background-size: auto;
+}
+
 #window {
     position: absolute;
     height: 55%;
