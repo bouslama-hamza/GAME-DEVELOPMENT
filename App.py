@@ -11,9 +11,7 @@ app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///testDB'
 db = SQLAlchemy(app)
 login_manager=LoginManager(app)
 @login_manager.user_loader
-def load_user(user_id):
-    return Student.query.get(int(user_id))
-class Student(db.Model,UserMixin): 
+class Student(db.Model): 
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(100), nullable= False)
     email = db.Column(db.String(50), nullable= False)
@@ -24,6 +22,7 @@ class Student(db.Model,UserMixin):
     player2_score = db.Column(db.String(100),)
     def __repr__(self):
         return f"Student('{self.id}','{self.name}','{self.email}','{self.password}','{self.player1}','{self.player2}','{self.player1_score}','{self.player2_score}')"
+
 @app.route('/', methods=['GET','POST'])
 def index():
     if request.method=='POST' :
@@ -32,8 +31,8 @@ def index():
             session['password']=request.form.get('password')
             data =Student.query.filter_by(email=request.form.get('email')).first()
             if data and data.password==session['password']:
-                    #session['user']=data   :( :( :(
-                login_user(data)
+                    
+                #login_user(data)
                 session['data'] = {'score1': data.player1_score, 'score2': data.player2_score,'player1':data.player1,'player2':data.player2}
                 flash('you have been logged in')
                 return redirect(url_for('game'))
@@ -80,7 +79,7 @@ def virefy():
             else:
                 session.pop('validation_message', None)
                 session.pop('valid', None)
-                return render_template('reset_new.html')
+                return render_template('reset.html')
     return redirect(url_for('index'))
 @app.route('/logout')
 def logout():
@@ -141,7 +140,7 @@ def indexout(user_score):
     if 'data' in session:
         print("working here ?!")
         data =Student.query.filter_by(email=session['email']).first()
-        if data.email:
+        if data:
             data.player1_score=user_scores['player2']
             data.player2_score=user_scores['player1']
         else:
@@ -186,7 +185,7 @@ def game():
     else:
         return redirect(url_for('index'))
 if (__name__=="__main__"):
-    app.run(debug=True,port=5000)
+    app.run(debug=True,port=5100)
     
 
     

@@ -3,7 +3,7 @@ body{
     background-color: #cccccc; /* Used if the image is unavailable */
     size:cover; /* You must set a specified height */
     background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
+    repeat: no-repeat; /* Do not repeat the image */
     background-size: cover; /* Resize the background image to cover the entire container */
 }
 
@@ -67,7 +67,7 @@ input[type = checkbox]{
 }
 #value1 {
     margin: 1%;
-    border: 1px solid aliceblue;
+    border: 1px solid rgb(240, 248, 255);
     border-width: 5px;
     align-items: center;
     margin-left: 2vw;
