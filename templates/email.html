@@ -1,10 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-<div id='plays'>
+<link rel="stylesheet" href="{{url_for('static' , filename='CSS/style.css')}}">
+<div class='window'>
     <form action="/reset" method="POST" id ='homey'>
-        <br><label for="email_">Email</label><br>
-        <input type="text" name="email_" placeholder='email...' required , style="font-size: 30px;"><br>
-        <button type="submit" , style="font-size: 30px;" >submit</button>
+        <label for="email_" style='text-align:center;display: table-cell; '>Enter your email to receive the code to reset your password</label><br>
+        <input type="text" name="email_" placeholder='email...' required ><br>
+        {% if error %}
+        <p class='error'>This email dosen't have an account</p>
+        {% endif %}
+        <input type="submit" id='submit' value='Send' style="font-size: 30px;" >
     </form>
 </div>
 {% endblock content %}

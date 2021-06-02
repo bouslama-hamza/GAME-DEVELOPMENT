@@ -2,26 +2,22 @@
 {% block content %}
 <link rel="stylesheet" href="{{url_for('static' , filename='CSS/style.css')}}">
 <div class="window">
-    <h2>SIGN IN</h2>
+    <h2>SIGN UP</h2>
     <form action="/singup" method="POST" id ='homey'>
-
-            <input type="text" name="name" placeholder='Username'required><br>
-            <input type="text" name="email" placeholder='Email'required ><br>
-            <input type="password" name='password' placeholder='Password'required><br>   
-            <input type="submit" value="Submit">
-
-        <br><label for="email">Username</label><br>
-        <input type="text name" name="name" placeholder='username...' required , style="font-size: 30px;"><br>
-        <br><label for="email">Email</label><br>
-        <input type="email" name="email" placeholder='Email ...' required , style="font-size: 30px;"><br>
-        <label for="name">Password</label><br>
-        <input type="password" name='password' placeholder='password ...', required , style="font-size: 30px;"><br>
-        {% if error_ %}
-            <p class='error'>{{ error_ }}</p>
+        <input type="text" name="name" placeholder='Username'required><br>
+        {% if inv1 %}
+            <p class='error'>invalid user name</p>
         {% endif %}
-        <label for="confirm_password">Confirm Password</label><br>
-        <input type="password" name='confirm_password' placeholder='confirm password ...', required , style="font-size: 30px;"><br>  
-        <button type="submit" , style="font-size: 30px;" >submit</button>
+        <input type="text" name="email" placeholder='Email'required ><br>
+        {% if inv2 %}
+            <p class='error'>invalid email</p>
+        {% endif %}
+        <input type="password" id='password' name='password' placeholder='Password'required><br>
+        <input type="password" id='confirm_password' name='confirm_password' placeholder='confirm password ...', required><br>
+        {% if inv3 %}
+                <p class='error'>please set the same password</p>
+        {% endif %}
+        <input type="submit" id='submit' value="Submit">
     </form>
 </div>
 

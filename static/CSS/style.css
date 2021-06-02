@@ -1,9 +1,10 @@
 body{
-
-    background-image: url('img.jpg');
-    background-size: cover;
-    font-family: Arial;
-    
+    background-image: url("../images/background.jpeg"); /* The image used */
+    background-color: #cccccc; /* Used if the image is unavailable */
+    size:cover; /* You must set a specified height */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
 }
 
 .window{
@@ -11,12 +12,11 @@ body{
     max-width: 350px;
     border-radius: 20px;
     margin: auto;
-    background: white;
     box-sizing: border-box;
     padding: 40px;
-    color: #60adde;
+    color: #a8c6d8;
     margin-top: 100px;
-
+    background-color: #5580ae84;
 }
 h2{
     text-align: center;
@@ -29,30 +29,33 @@ input[type = text] , input[type = password]{
     padding: 12px 5px;
     outline: none;
     border: none;
-    color: black;
+    color: rgb(19, 17, 17);
     border-radius: 5px;
     margin: 10px;
     font-weight: bold;
+    background-color: #00336631;
 }
-input[type = submit]{
+input[type = submit],#singup{
     
     width: 100%;
     box-sizing: border-box;
     padding: 10px 0;
+    margin-left: 0.7vw;
     margin-top: 30px;
     outline: none;
     border: none;
-    background: #60adde;
+    background-color: #00336631;
     border-radius: 20px;
     font-size: 20px;
     color: #fff;
 }
 
 input[type = submit]:hover{
-
-    background: #003366;
+    background: #60adde;
     opacity: 0.7;
-
+}
+input[type = checkbox]{
+    margin-left: 0.8vw;
 }
 #about {
     color: white;
@@ -62,11 +65,40 @@ input[type = submit]:hover{
     background-color: #60adde;
     font-size: 40px;
 }
-#value {
+#value1 {
     margin: 1%;
-    border: 2px solid aliceblue;
-    border-width: 30px;
+    border: 1px solid aliceblue;
+    border-width: 5px;
     align-items: center;
+    margin-left: 2vw;
     width: 95%;
     font-size: 20px;
+}
+#singup,#reset{
+    margin-left: 0.8vw;
+    font-size: 12px;
+    margin-top: 1.5vw;
+}
+#singup{
+    margin-left: 5px;
+    font-size: 14px;
+    text-decoration: none;
+    border: 0.001px solid rgba(0, 0, 0, 0.345);
+    background-color: rgb(75, 150, 75);
+}
+#singup:hover{
+    background-color: rgb(61, 116, 61);
+}
+.error{
+    margin-left: 0.8vw;
+    font-size: 14px;
+    border:0.1px solid rgb(234, 78, 78);
+    width:20.2vw;
+    margin-top: -0.8vw;
+    border-top: 0px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color: rgb(222, 106, 106);
+    color: black;
+    text-align: center;
 }

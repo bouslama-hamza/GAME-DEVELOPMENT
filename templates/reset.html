@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-
-<div id='plays'>
+<link rel="stylesheet" href="{{url_for('static' , filename='CSS/style.css')}}">
+<div class='window'>
     <form action="/virefy" method="POST" id ='homey'>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
@@ -10,10 +10,10 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
-        <p>check your Email !!</p><br>
-        <br><label for="passvalid">Enter the 6 digits </label><br>
+        <p style='margin-left: 4.7vw;'>check your Email !!</p>
+        <label for="passvalid" style='margin-left: 5vw;' >Enter the 6 digits </label><br>
         <input type="text" name="passvalid" placeholder='six digits...' required , style="font-size: 30px;"><br>
-        <button type="submit" , style="font-size: 30px;" >submit</button>
+        <input type="submit" id='submit' value="Submit">
     </form>
 </div>
 
