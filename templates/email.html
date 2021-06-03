@@ -2,8 +2,8 @@
 {% block content %}
 <link rel="stylesheet" href="{{url_for('static' , filename='CSS/style.css')}}">
 <div class='window'>
-    <form action="/reset" method="POST" id ='homey'>
-        <label for="email_" style='text-align:center;display: table-cell; '>Enter your email to receive the code to reset your password</label><br>
+    <form action="/reset" method="POST" style="padding-top: 70px; margin-top: 80px;">
+        <label for="email_" id="amail">Enter your email to receive the code to reset your password</label><br>
         <input type="text" name="email_" placeholder='email...' required ><br>
         {% if error %}
         <p class='error'>This email dosen't have an account</p>

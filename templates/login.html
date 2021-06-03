@@ -4,15 +4,16 @@
 <main >
 <div class='window'>
     <form action="/" method="POST" id ='homey'>
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for msg in messages %}
-                    <p class='error'>{{ msg }}</p>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
+
         <input type="text" id='email' name="email" placeholder='Email ...' required ><br>
         <input type="password" style='font-family: unset;' id='password' name='password' placeholder='password ...', required ><br>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p class='error'>{{ msg }}</p>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
         <input type="checkbox" onclick="show_password()" ><span style='font-size:15px;'  > Show Password</span><br>
         <input type="submit" id='submit' value="log In">
     </form>

@@ -8,6 +8,8 @@ from random import randint
 app= Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///testDB'
+
+
 db = SQLAlchemy(app)
 login_manager=LoginManager(app)
 @login_manager.user_loader
@@ -29,10 +31,8 @@ def index():
         if request.form.get('email') and request.form.get('password'):
             session['email']=request.form.get('email')
             session['password']=request.form.get('password')
-            data =Student.query.filter_by(email=request.form.get('email')).first()
+            data =Student.query.filter_by(email=request.form.get('email'))
             if data and data.password==session['password']:
-                    
-                #login_user(data)
                 session['data'] = {'score1': data.player1_score, 'score2': data.player2_score,'player1':data.player1,'player2':data.player2}
                 flash('you have been logged in')
                 return redirect(url_for('game'))
@@ -47,7 +47,6 @@ def index():
                 session.pop('new_password', None)
                 session.pop('email_',None)
             db.session.commit()
-            print(Student.query.all())
     return render_template("login.html")
 @app.route('/email')
 def email():
@@ -77,7 +76,6 @@ def virefy():
                 session.pop('valid', None)
                 return render_template('reset_new.html')
             else:
-                session.pop('validation_message', None)
                 session.pop('valid', None)
                 return render_template('reset.html')
     return redirect(url_for('index'))
@@ -94,7 +92,7 @@ def logout():
         session.pop('confirm_password', None)
         session.pop('player1', None)
         session.pop('player2', None)
-    print(session)
+    session.clear()
     return redirect(url_for('index'))
 @app.route('/singup', methods=['GET','POST'])
 def singup():
@@ -117,6 +115,7 @@ def singup():
             session.pop('name', None)
             session.pop('email', None)
             session.pop('password', None)
+            session.pop('confirm_password', None)
             return render_template("singup.html",inv1=inv1,inv2=inv2,inv3=inv3)
         else:
             return redirect(url_for('players'))    
@@ -138,13 +137,11 @@ def checkemail(a):
 def indexout(user_score):
     user_scores = json.loads(user_score)
     if 'data' in session:
-        print("working here ?!")
         data =Student.query.filter_by(email=session['email']).first()
         if data:
             data.player1_score=user_scores['player2']
             data.player2_score=user_scores['player1']
         else:
-            print("user not found !!!!!")
             return redirect(url_for('index'))
     elif 'name' in session:
         user1=Student(name=session['name'],email=session['email'],password=session['password'],\
@@ -160,10 +157,8 @@ def indexout(user_score):
 @app.route('/players', methods=['GET','POST'])
 def players():
     if session.get('confirm_password'):
-        session.pop('confirm_password')
+        session.pop('confirm_password',None)
     if 'name' in session and 'email' in session and 'password' in session:
-        print("what the heck")
-        print(session)
         if request.method == 'POST':
             session['player1']=request.form.get('player1')
             session['player2']=request.form.get('player2')

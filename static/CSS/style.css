@@ -1,29 +1,42 @@
-body{
-    background-image: url("../images/background.jpeg"); /* The image used */
-    background-color: #cccccc; /* Used if the image is unavailable */
-    size:cover; /* You must set a specified height */
-    background-position: center; /* Center the image */
-    repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; /* Resize the background image to cover the entire container */
+body {
+    background-image: url("../images/background.jpeg");
+    /* The image used */
+    background-color: #cccccc;
+    /* You must set a specified height */
+    background-position: center;
+    /* Center the image */
+    background-repeat: no-repeat;
+    /* Do not repeat the image */
+    background-size: cover;
+    /* Resize the background image to cover the entire container */
 }
 
-.window{
+#amail {
+    justify-content: center;
+    display: table-cell;
+    /*margin-top: 80px;
+    padding-top: 130px;*/
+}
 
+.window {
     max-width: 350px;
     border-radius: 20px;
     margin: auto;
     box-sizing: border-box;
     padding: 40px;
     color: #a8c6d8;
-    margin-top: 100px;
+    padding-top: 29px;
+    margin-top: 5px;
     background-color: #5580ae84;
+    position: relative;
 }
-h2{
+
+h2 {
     text-align: center;
 }
 
-input[type = text] , input[type = password]{
-
+input[type=text],
+input[type=password] {
     width: 100%;
     box-sizing: border-box;
     padding: 12px 5px;
@@ -35,8 +48,9 @@ input[type = text] , input[type = password]{
     font-weight: bold;
     background-color: #00336631;
 }
-input[type = submit],#singup{
-    
+
+input[type=submit],
+#singup {
     width: 100%;
     box-sizing: border-box;
     padding: 10px 0;
@@ -50,50 +64,81 @@ input[type = submit],#singup{
     color: #fff;
 }
 
-input[type = submit]:hover{
+input[type=submit] {
+    color: greenyellow;
+}
+
+input[type=submit]:hover {
     background: #60adde;
     opacity: 0.7;
+    color: #fff;
 }
-input[type = checkbox]{
+
+input[type=submit]:hover :after {
+    width: 100%;
+}
+
+input[type=checkbox] {
     margin-left: 0.8vw;
 }
+
 #about {
-    color: white;
-    border: 2px solid #60adde;
-    border-width: 12px;
+    border: 0px solid;
     text-align: center;
-    background-color: #60adde;
-    font-size: 40px;
+    background: #b92b27;
+    background: -webkit-linear-gradient(to right, #e72f29, #2766b9);
+    background: linear-gradient(to right, #e72f29, #2766b9);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -mo-text-fill-color: transparent;
+    font-size: 80px;
 }
+
 #value1 {
+    position: relative;
     margin: 1%;
-    border: 1px solid rgb(240, 248, 255);
-    border-width: 5px;
+    border: 0px solid;
+    /* border-width: 5px;*/
     align-items: center;
     margin-left: 2vw;
     width: 95%;
-    font-size: 20px;
+    font-size: 23px;
+    top: 410px;
+    background-color: rgba(255, 255, 255, 0.877);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -mo-text-fill-color: transparent;
+    font-family: sans-serif;
 }
-#singup,#reset{
+
+#singup,
+#reset {
     margin-left: 0.8vw;
     font-size: 12px;
     margin-top: 1.5vw;
 }
-#singup{
+
+#singup {
     margin-left: 5px;
     font-size: 14px;
     text-decoration: none;
     border: 0.001px solid rgba(0, 0, 0, 0.345);
     background-color: rgb(75, 150, 75);
 }
-#singup:hover{
+
+#singup:hover {
     background-color: rgb(61, 116, 61);
 }
-.error{
+
+.error {
     margin-left: 0.8vw;
     font-size: 14px;
-    border:0.1px solid rgb(234, 78, 78);
-    width:20.2vw;
+    border: 0.1px solid rgb(234, 78, 78);
+    width: 20.2vw;
     margin-top: -0.8vw;
     border-top: 0px;
     border-bottom-left-radius: 3px;
