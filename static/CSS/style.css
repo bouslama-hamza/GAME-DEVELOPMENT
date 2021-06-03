@@ -28,7 +28,7 @@ body {
     padding: 40px;
     color: #a8c6d8;
     padding-top: 29px;
-    margin-top: 5px;
+    margin-top: 10%;
     background-color: #5580ae84;
     position: relative;
 }
@@ -107,7 +107,7 @@ input[type=checkbox] {
     margin-left: 2vw;
     width: 95%;
     font-size: 23px;
-    top: 410px;
+
     background-color: rgba(255, 255, 255, 0.877);
     background-size: 100%;
     -webkit-background-clip: text;
