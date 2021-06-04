@@ -2,12 +2,20 @@
     margin: 0px;
     padding: 0px;
 }
+.Efect{
+
+    border: 2px solid white;
+    box-sizing: border-box;
+}
 #window {
     position: absolute;
-    height: 55%;
+    margin-top: 20px;
+    height: 65%;
     width: 60%;
-    margin-top: 9%;
     margin-left: 16%;
+    background-color: black;
+    border-radius: 20px;
+    background-color: green;
 }
 
 #leftborder,
@@ -50,19 +58,12 @@
     left: 50%;
 }
 
-#score1,
-#score-,
-#score2 {
-    display: inline-block;
-    font-size: 85px;
-    font-family: 'Snell Roundhand', cursive;
-    left: 36%;
-}
 
 #control {
-    margin-left: 41%;
-    position: absolute;
-    top: 0%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 100px;
 }
 
 #player1 {
@@ -169,69 +170,34 @@ form {
 }
 
 .homeys {
-    position: fixed;
-    width: 10vw;
+
+    display: flex;
+    justify-content: space-around;
+
+}
+
+#homeys1 ,#homeys2 {
+
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 0;
+    margin-left: 0.7vw;
+    margin-top: 10px;
+    outline: none;
     border: none;
-    color: black;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    top: 85%;
-    left: 55%;
-    transition-duration: 0.4s;
-}
-
-#homeys1 {
-    position: relative;
-    left: 25%;
-    bottom: -350px;
-    border: 5px solid #2193b0;
-    background: #2193b0;
-    background: -webkit-linear-gradient(to right, #2193b0, #6dd5ed);
-    background: linear-gradient(to right, #2193b0, #6dd5ed);
-    border-radius: 30px;
-}
-
-#homeys2 {
-    position: relative;
-    border: 5px solid #f64f59;
-    bottom: -350px;
-    left: 45%;
-    background: #f64f59;
-    background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
-    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
-    border-radius: 30px;
-}
-
-#homeys1:hover {
     background-color: #4CAF50;
+    border-radius: 20px;
+    font-size: 20px;
+    color: white;
+}
+#homeys1:hover {
+    background-color: #555555;
     color: white;
 }
 
 #homeys2:hover {
     background-color: #555555;
     color: white;
-}
-
-#player1description {
-    color: red;
-    font-family: serif;
-    position: relative;
-    top: 130px;
-    left: 45px;
-}
-
-#player2description {
-    color: rgb(55, 0, 255);
-    font-family: serif;
-    position: relative;
-    top: 70px;
-    left: 85%;
 }
 
 .error {
@@ -245,7 +211,22 @@ form {
     font-size: 15px;
     border: 0.5px solid rgb(63, 213, 55);
     color: rgb(110, 210, 53);
+    display: inline-block;
     border-radius: 1px;
+    visibility:visible;
+    animation:move 5s;
+    -webkit-animation:move 5s infinite;
+    -webkit-animation-iteration-count:1;
+    -webkit-animation-fill-mode:forwards;
+}
+@-webkit-keyframes move /* Safari and Chrome */
+
+{
+0%   {opacity:1;}
+15%   {opacity:0.7;}  
+50%  {opacity:0.7;}
+75%  {opacity:0.3;}
+100% {opacity:0;}
 }
 
 .dayera {

@@ -26,7 +26,7 @@ body {
     padding: 40px;
     color: #a8c6d8;
     padding-top: 29px;
-    margin-top: 5px;
+    margin-top: 10%;
     background-color: #5580ae84;
     position: relative;
 }
@@ -105,7 +105,7 @@ input[type=checkbox] {
     margin-left: 2vw;
     width: 95%;
     font-size: 23px;
-    top: 410px;
+
     background-color: rgba(255, 255, 255, 0.877);
     background-size: 100%;
     -webkit-background-clip: text;
@@ -146,4 +146,19 @@ input[type=checkbox] {
     background-color: rgb(222, 106, 106);
     color: black;
     text-align: center;
+    visibility:visible;
+    animation:move 5s;
+    -webkit-animation:move 5s infinite;
+    -webkit-animation-iteration-count:1;
+    -webkit-animation-fill-mode:forwards;
+}
+
+@-webkit-keyframes move /* Safari and Chrome */
+
+{
+0%   {opacity:1;}
+15%   {opacity:0.7;}  
+50%  {opacity:0.7;}
+75%  {opacity:0.3;}
+100% {opacity:0;}
 }

@@ -31,98 +31,57 @@ def index():
         if request.form.get('email') and request.form.get('password'):
             session['email']=request.form.get('email')
             session['password']=request.form.get('password')
-            data =Student.query.filter_by(email=request.form.get('email'))
-            if data and data.password==session['password']:
+            print(db.session.query(Student))
+            data =Student.query.filter_by(email=session['email']).first()
+            print(data)
+            if  data :
+                if not data.email==session['email']:
+                    flash("This user doesn't have an account",'nv1')
+                    return redirect(url_for('index'))
+                if not data.password==session['password']:
+                    flash("Incorrect password",'inv2')
+                    return redirect(url_for('index'))
                 session['data'] = {'score1': data.player1_score, 'score2': data.player2_score,'player1':data.player1,'player2':data.player2}
-                flash('you have been logged in')
+                flash('You have been logged-in secssefuly')
                 return redirect(url_for('game'))
             else :
-                flash('incorrect user info')
+                flash("This user doesn't have an account",'inv3')
                 return redirect(url_for('index'))
-        elif request.form.get('new_password'):
-            session['new_password']=request.form.get('new_password')
-            data =Student.query.filter_by(email=session['email_']).first()
-            if data.email:
-                data.password=session['new_password']
-                session.pop('new_password', None)
-                session.pop('email_',None)
-            db.session.commit()
     return render_template("login.html")
-@app.route('/email')
-def email():
-    return render_template('email.html')
-@app.route('/reset', methods=['GET','POST'])
-def reset():
-    if request.method == 'POST' :
-        session['email_']=request.form.get('email_')
-        session['validation_message']=str(randint(100000,999999))
-        data =Student.query.filter_by(email=request.form.get('email_')).first()
-        print(data)
-        if data :
-            send_email(session['email_'],session['validation_message'])
-            return render_template('reset.html')
-        else :
-            session.pop('email_')
-            session.pop('validation_message')
-            return render_template('email.html',error=True)
-    return redirect(url_for('index'))
-@app.route('/virefy', methods=['GET','POST'])
-def virefy():
-    if request.method == 'POST' :
-            session['valid']=request.form.get('passvalid')
-            if session.get('validation_message')==request.form.get('passvalid'):
-                print("what the heck")
-                session.pop('validation_message', None)
-                session.pop('valid', None)
-                return render_template('reset_new.html')
-            else:
-                session.pop('valid', None)
-                return render_template('reset.html')
-    return redirect(url_for('index'))
-@app.route('/logout')
-def logout():
-    if 'data' in session:
-        session.pop('data', None)
-        session.pop('email', None)
-        session.pop('password', None)
-    else:
-        session.pop('name', None)
-        session.pop('email', None)
-        session.pop('password', None)
-        session.pop('confirm_password', None)
-        session.pop('player1', None)
-        session.pop('player2', None)
-    session.clear()
-    return redirect(url_for('index'))
+
+
 @app.route('/singup', methods=['GET','POST'])
 def singup():
-    inv1=False
-    inv2=False
-    inv3=False
-    if request.method == 'POST' and  not session.get("confirm_password"):
+    nv=False
+    if request.method == 'POST':
         session['name']=request.form.get('name')
         session['email']=request.form.get('email')
         session['password']=request.form.get('password')
         session['confirm_password']=request.form.get('confirm_password')
         print(session['name'])
-        if len(session['name'])<4 or checkuser(session['name']):
-            inv1=True
+        if len(session['name'])<4:
+            flash("username too short at least 4 letters",'inv1')
+        elif checkuser(session['name']):
+            flash("invalid username",'inv1')
+            print('')
+            nv=True
         if '@' not in session['email'] or checkemail(session['email']) or len(session['email'])<4:
-            inv2=True
-        if session['password']!=session['confirm_password']:
-            inv3=True
-        if inv1 or inv2 or inv3 :
+            flash("invalid email",'inv2')
+            nv=True
+        if session['password']!=session['confirm_password'] or len(session['password'])>=8:
+            flash("Password too short",'inv3')
+            nv=True
+        if nv:
             session.pop('name', None)
             session.pop('email', None)
             session.pop('password', None)
             session.pop('confirm_password', None)
-            return render_template("singup.html",inv1=inv1,inv2=inv2,inv3=inv3)
+            return redirect(url_for('singup'))
         else:
-            return redirect(url_for('players'))    
-    else:
-        if session.get('confirm_password'):
-            session.pop('confirm_password')
-        return render_template("singup.html",inv1=inv1,inv2=inv2,inv3=inv3)
+            return redirect(url_for('players'))
+    if session.get('confirm_password'):
+            session.pop('confirm_password')        
+    return render_template("singup.html")
 def checkuser(a):
     data =Student.query.filter_by(name=a).first()
     if data:
@@ -133,27 +92,92 @@ def checkemail(a):
     if data:
         return True
     return False
-@app.route('/<user_score>',methods=['POST'])
-def indexout(user_score):
-    user_scores = json.loads(user_score)
-    if 'data' in session:
-        data =Student.query.filter_by(email=session['email']).first()
-        if data:
-            data.player1_score=user_scores['player2']
-            data.player2_score=user_scores['player1']
+
+
+@app.route('/email', methods=['GET','POST'])
+def email():
+    if request.method == 'POST' :
+        if request.form.get('email_'):
+            session['email_']=request.form.get('email_')
+            data =Student.query.filter_by(email=request.form.get('email_')).first()
+            print(data)
+            if data :
+                session['validation_message']=str(randint(100000,999999))
+                send_email(session['email_'],session['validation_message'])
+                return redirect(url_for("verification"))
+            else :
+                session.pop('email_',None)
+                session.pop('validation_message',None)
+                print("hello")
+                return render_template('email.html',error=True)
         else:
             return redirect(url_for('index'))
-    elif 'name' in session:
-        user1=Student(name=session['name'],email=session['email'],password=session['password'],\
-                player1=session['player1'],player2=session['player2'],\
-                player1_score=user_scores['player1'],player2_score=user_scores['player2'])
-        db.session.add(user1)
-    db.session.commit()
-    print(Student.query.all())
-    return 'done'
+    if session.get('email_'):
+        session.pop('validation_message', None)
+        session['validation_message']=str(randint(100000,999999))
+        send_email(session['email_'],session['validation_message'])
+        return redirect(url_for("verification"))
+    return render_template('email.html')
+@app.route('/verification/email', methods=['GET','POST'])
+def verification():
+    if request.method == 'POST' :
+        session['valid']=request.form.get('passvalid')
+        if session.get('validation_message')==request.form.get('passvalid'):
+            print("what the heck")
+            session.pop('validation_message', None)
+            session.pop('valid', None)
+            return redirect(url_for('reset'))
+        else:
+            session.pop('valid', None)
+            flash("Incorrect Try Again")
+            return redirect(url_for('verification'))
+    return render_template('verifyemail.html')
+@app.route('/reset', methods=['GET','POST'])
+def reset():
+    if request.method == 'POST' :
+        if request.form.get('new_password'):
+            session['new_password']=request.form.get('new_password')
+            if len(session.get('new_password'))<8:
+                flash("Password must be at least 8 caracters long")
+                session.pop('new_password',None)
+                return redirect(url_for('reset'))
+            data =Student.query.filter_by(email=session['email_']).first()
+            if data:
+                if session.get('new_password')==data.email:
+                    flash("Your new password can not be your old password")
+                    session.pop('new_password',None)
+                    return redirect(url_for('reset'))
+                if data.email:
+                    data.password=session['new_password']
+                    session.pop('new_password', None)
+                    session.pop('email_',None)
+                db.session.commit()
+                return redirect(url_for('index'))
+    return render_template('reset_new.html')
+@app.route('/logout')
+def logout():
+    for key in list(session.keys()):
+     session.pop(key)
+    return redirect(url_for('index'))
 
-
-
+@app.route('/<user_score>',methods=['POST'])
+def indexout(user_score):
+    if request.method == 'POST' :
+            user_scores = json.loads(user_score)
+            if 'data' in session:
+                data =Student.query.filter_by(email=session['email']).first()
+                if data:
+                    data.player1_score=user_scores['player2']
+                    data.player2_score=user_scores['player1']
+                else:
+                    return redirect(url_for('index'))
+            elif 'name' in session:
+                user1=Student(name=session['name'],email=session['email'],password=session['password'],\
+                        player1=session['player1'],player2=session['player2'],\
+                        player1_score=user_scores['player1'],player2_score=user_scores['player2'])
+                db.session.add(user1)
+            db.session.commit()
+    return 'helloffff'
 @app.route('/players', methods=['GET','POST'])
 def players():
     if session.get('confirm_password'):
