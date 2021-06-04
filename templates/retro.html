@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="Efect"> 
+<div id="all" class="kora">
 <link rel="stylesheet" href="{{ url_for('static',filename='CSS/retro.css') }}">
 <div id="control" >
     <div id="player1description" style="color: red;"><span id='playernamedata1'></span></div>
@@ -10,18 +12,19 @@
 </div>
                 <!-- Game Area-->
 <div id="window" >
-        <div id="Line1"  ></div>
-            <div id="leftborder1"></div>
-                <div id="rightborder"></div>
-                <div id="leftborder"></div>
-            <div id="rightborder1"></div> 
+        <div id="Line1" ></div>
+        <div id="leftborder1"></div>
+        <div id="rightborder"></div>
+        <div id="leftborder"></div>
+        <div id="rightborder1"></div> 
         <div id="Line2"></div>
-    
-    <div class="vertical" ><div id="kora"></div></div>
-    <button id="Button" >Play</button>
-    <svg id='hell' width='100%' height='100%' style="background-color: green;border-radius:30px;">
-        <circle id='texthey' cx='398' cy='260' r='10' fill='white'></circle>
-    </svg>
+        <div class="vertical"></div>
+        <button id="Button">Play</button>
+        <svg id='hell' width=100% height='100% '><circle id='texthey' cx='398' cy='260' r='10' fill='white'></circle></svg>         
+        <div class="homeys">
+            <input type="button" id='homeys1' value="SAVE SCORE" onclick="out()" >
+            <input type="button" id='homeys2' value="LOG OUT" onclick="location='/logout'" >
+        </div>
 </div>
 
 {% with messages = get_flashed_messages() %}
