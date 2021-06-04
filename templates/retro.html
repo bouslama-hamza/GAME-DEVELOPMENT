@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static',filename='CSS/retro.css') }}">
-
 <div id="control" >
-    <div id="score1">0</div>
+    <div id="player1description" style="color: red;"><span id='playernamedata1'></span></div>
+    <div id="score1" style="color: red;">0</div>
     <div id="score-">-</div> 
-    <div id="score2">0</div>
+    <div id="score2" style="color: blue;">0</div>
+    <div id="player2description" style="color: blue;"><span id='playernamedata2'></span></div>
 </div>
-            <!-- Name of The Players-->
-
                 <!-- Game Area-->
 <div id="window" >
         <div id="Line1"  ></div>
@@ -24,10 +23,7 @@
         <circle id='texthey' cx='398' cy='260' r='10' fill='white'></circle>
     </svg>
 </div>
-<div id="player1description"><span id='playernamedata1'> player1</span> <br> how to play <br> ⬆️ : w <br> ⬇️ : s </div>
-<div id="player2description"><span id='playernamedata2'> player1</span><br> how to play <br> ⬆️ : o <br> ⬇️ : l </div>
-<button type="button" class='homeys' id='homeys1' onclick="out()" >save score </button>
-<button type="button" class='homeys' id='homeys2' onclick="location='/logout'" >logout </button>
+
 {% with messages = get_flashed_messages() %}
     {% if messages %}
         {% for msg in messages %}
@@ -35,6 +31,7 @@
         {% endfor %}
     {% endif %}
 {% endwith %}
+</div>
 </div>
 <script>
     var user = JSON.parse('{{ user | tojson | safe}}');
