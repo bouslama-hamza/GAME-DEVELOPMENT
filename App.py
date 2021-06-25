@@ -2,18 +2,13 @@ from flask import Flask,render_template,request,session,redirect,flash
 from flask.helpers import url_for
 from flask_sqlalchemy import SQLAlchemy
 import json
-from flask_login import LoginManager,UserMixin,login_user
 from Email import send_email
 from random import randint
 app= Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///testDB'
-
-
 db = SQLAlchemy(app)
-login_manager=LoginManager(app)
-@login_manager.user_loader
-class Student(db.Model): 
+class worker(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(100), nullable= False)
     email = db.Column(db.String(50), nullable= False)
@@ -23,7 +18,7 @@ class Student(db.Model):
     player1_score = db.Column(db.String(100),)
     player2_score = db.Column(db.String(100),)
     def __repr__(self):
-        return f"Student('{self.id}','{self.name}','{self.email}','{self.password}','{self.player1}','{self.player2}','{self.player1_score}','{self.player2_score}')"
+        return f"worker('{self.id}','{self.name}','{self.email}','{self.password}','{self.player1}','{self.player2}','{self.player1_score}','{self.player2_score}')"
 
 @app.route('/', methods=['GET','POST'])
 def index():
@@ -31,8 +26,8 @@ def index():
         if request.form.get('email') and request.form.get('password'):
             session['email']=request.form.get('email')
             session['password']=request.form.get('password')
-            print(db.session.query(Student))
-            data =Student.query.filter_by(email=session['email']).first()
+            print(db.session.query(worker))
+            data =worker.query.filter_by(email=session['email']).first()
             print(data)
             if  data :
                 if not data.email==session['email']:
@@ -48,8 +43,6 @@ def index():
                 flash("This user doesn't have an account",'inv3')
                 return redirect(url_for('index'))
     return render_template("login.html")
-
-
 @app.route('/singup', methods=['GET','POST'])
 def singup():
     nv=False
@@ -68,9 +61,11 @@ def singup():
         if '@' not in session['email'] or checkemail(session['email']) or len(session['email'])<4:
             flash("invalid email",'inv2')
             nv=True
-        if session['password']!=session['confirm_password'] or len(session['password'])>=8:
+        if len(session['password'])<=8:
             flash("Password too short",'inv3')
             nv=True
+        elif session['password']!=session['confirm_password']:
+            flash("incorrect confimrming password",'inv3')            
         if nv:
             session.pop('name', None)
             session.pop('email', None)
@@ -83,23 +78,21 @@ def singup():
             session.pop('confirm_password')        
     return render_template("singup.html")
 def checkuser(a):
-    data =Student.query.filter_by(name=a).first()
+    data =worker.query.filter_by(name=a).first()
     if data:
         return True
     return False
 def checkemail(a):
-    data =Student.query.filter_by(email=a).first()
+    data =worker.query.filter_by(email=a).first()
     if data:
         return True
     return False
-
-
 @app.route('/email', methods=['GET','POST'])
 def email():
     if request.method == 'POST' :
         if request.form.get('email_'):
             session['email_']=request.form.get('email_')
-            data =Student.query.filter_by(email=request.form.get('email_')).first()
+            data =worker.query.filter_by(email=request.form.get('email_')).first()
             print(data)
             if data :
                 session['validation_message']=str(randint(100000,999999))
@@ -108,7 +101,6 @@ def email():
             else :
                 session.pop('email_',None)
                 session.pop('validation_message',None)
-                print("hello")
                 return render_template('email.html',error=True)
         else:
             return redirect(url_for('index'))
@@ -141,7 +133,7 @@ def reset():
                 flash("Password must be at least 8 caracters long")
                 session.pop('new_password',None)
                 return redirect(url_for('reset'))
-            data =Student.query.filter_by(email=session['email_']).first()
+            data =worker.query.filter_by(email=session['email_']).first()
             if data:
                 if session.get('new_password')==data.email:
                     flash("Your new password can not be your old password")
@@ -158,6 +150,7 @@ def reset():
 def logout():
     for key in list(session.keys()):
      session.pop(key)
+     print(worker)
     return redirect(url_for('index'))
 
 @app.route('/<user_score>',methods=['POST'])
@@ -165,19 +158,19 @@ def indexout(user_score):
     if request.method == 'POST' :
             user_scores = json.loads(user_score)
             if 'data' in session:
-                data =Student.query.filter_by(email=session['email']).first()
+                data =worker.query.filter_by(email=session['email'])
                 if data:
                     data.player1_score=user_scores['player2']
                     data.player2_score=user_scores['player1']
                 else:
                     return redirect(url_for('index'))
             elif 'name' in session:
-                user1=Student(name=session['name'],email=session['email'],password=session['password'],\
+                user1=worker(name=session['name'],email=session['email'],password=session['password'],\
                         player1=session['player1'],player2=session['player2'],\
                         player1_score=user_scores['player1'],player2_score=user_scores['player2'])
                 db.session.add(user1)
             db.session.commit()
-    return 'helloffff'
+    return 'hello'
 @app.route('/players', methods=['GET','POST'])
 def players():
     if session.get('confirm_password'):

@@ -238,3 +238,19 @@ form {
     border-left: 50%;
     z-index: 2;
 }
+#player1filed{
+    position: fixed;
+    width:7vw;
+    border:3px solid rgb(245, 54, 54);
+    border-radius:10px;
+    top:15vw;
+    left:5vw
+}
+#player2filed{
+    position: fixed;
+    width:7vw;
+    border:3px solid rgb(103, 103, 246);
+    border-radius:10px;
+    top:15vw;
+    right:5vw
+}

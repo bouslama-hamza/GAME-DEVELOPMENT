@@ -12,7 +12,7 @@
             {% endfor %}
         {% endif %}
         {% endwith %}
-        <input type="text" id='email' name="email" placeholder='Email'required ><br>
+        <input type="text" id='email' name="email" placeholder='Email'required >
         {% with messages = get_flashed_messages(category_filter=["inv2"]) %}
         {% if messages %}
             {% for msg in messages %}
